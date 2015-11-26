@@ -349,10 +349,6 @@ $template->assign_vars(array(
 	'PRIVATE_MESSAGE_INFO_UNREAD' => $l_privmsgs_text_unread,
 	'PRIVATE_MESSAGE_NEW_FLAG' => $s_privmsg_new,
 	'PRIVMSG_IMG' => $icon_pm,
-	/* Start Add Gf-Portail */
-	'L_HOME' => $lang['Home'],
-	'U_PORTAL' => append_sid('portal.'.$phpEx),
-	/* End Add Gf-Portail */	
 	'I_BT_SHOWHIDE' => $images['bt_showhide'],
 			
 	'L_BT_TITLE' => $lang['bt_title'],

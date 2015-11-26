@@ -211,10 +211,6 @@ MOD-*/
 					$location = $lang['Viewing_FAQ'];
 					$location_url = "faq.$phpEx";
 					break;
-				case PAGE_PORTAL:
-					$location = $lang['Portal_page'];
-					$location_url = "portal.$phpEx";
-					break;					
 				case PAGE_ADR:
 					$location = $lang['Viewing_ADR'];
 					$location_url = "adr_character.$phpEx";
