@@ -263,5 +263,7 @@ if (!DEBUG && (file_exists('install') || file_exists('contrib')))
 {
 	message_die(GENERAL_MESSAGE, 'Please_remove_install_contrib');
 }
-
+/* Start Add Gf-Portail */
+include($phpbb_root_path . 'gf_portail/gf_start.'.$phpEx);
+/* End Add Gf-Portail */
 include_once($phpbb_root_path . 'adr/includes/adr_functions_alone.'.$phpEx);

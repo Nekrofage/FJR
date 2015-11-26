@@ -267,3 +267,24 @@ if (!DEBUG && (file_exists('install') || file_exists('contrib')))
 include($phpbb_root_path . 'gf_portail/gf_start.'.$phpEx);
 /* End Add Gf-Portail */
 include_once($phpbb_root_path . 'adr/includes/adr_functions_alone.'.$phpEx);
+
+//
+// Quest MOD by Nuladion [START]
+// Get Quest MOD Settings, to use on the whole board :)
+//
+$questmod_config = array();
+
+$sql = "SELECT * FROM ".$table_prefix."quest_settings WHERE config_type != 'header' ";
+if( !($result = $db->sql_query($sql)) )
+{
+	message_die(GENERAL_MESSAGE, "Could not Quest MOD information!", "", __LINE__, __FILE__, $sql);
+}
+
+while ( $row = $db->sql_fetchrow($result) )
+{
+	$questmod_config[$row['config_name']] = $row['config_value'];
+}
+//
+// Quest MOD by Nuladion [END]
+//
+

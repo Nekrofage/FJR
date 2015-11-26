@@ -426,6 +426,62 @@ if ($total_categories = count($category_rows))
 		'U_SEARCH_LATEST_XXH' => append_sid('search.'.$phpEx.'?search_id=latest&amp;hours=' . $search_latest_hours[$search_i])
 	));
 
+
+//
+// Quest MOD by Nuladion [START]
+// List with users that are currently playing your RPG!
+//
+	// Get language file :)
+	include($phpbb_root_path . 'language/lang_' . $board_config['default_lang'] . '/lang_quest_map.php');
+
+	// Get current time
+	$timestamp = time();
+
+	// Get settings!
+	$offline_time = $questmod_config['chat_offline'];	// Seconds before someone is noted as offline
+
+	$time_off = $timestamp - $offline_time;
+
+	// Prepare variables!
+	$qm_players = array();
+
+	// Get online users! [START]
+	$sql = "SELECT * FROM ".$table_prefix."quest_chat_session WHERE time >= '".$time_off."' AND status != 'offline' ";
+	if ( !($result = $db->sql_query($sql)) )
+	{ message_die(GENERAL_MESSAGE, "<b>Fatal Error!</b><br><br>".mysql_error()); }
+	
+	for($i=0;$i < mysql_num_rows($result);$i++)
+	{
+		$row = mysql_fetch_array($result); 
+
+		$sql2 = "SELECT username FROM ". USERS_TABLE ." WHERE user_id = '".$row['user']."' ";
+		if ( !($result2 = $db->sql_query($sql2)) )
+		{ message_die(GENERAL_MESSAGE, "<b>Fatal Error!</b><br><br>".mysql_error()); }
+		$row2 = mysql_fetch_array($result2); 
+
+		$qm_players[] = $row2['username'];
+	}
+	// Get online users! [END]
+
+	$qm_chat_online = count($qm_players);
+
+	if($qm_chat_online >1)
+	{ $qm_players = sort($qm_players); $qm_online = implode(", ", $qm_players); }
+	else
+	{ $qm_players = $qm_players[0]; }
+
+	if($qm_chat_online == 0)
+	{ $qm_online_text = $lang['qm_chat_online_none']; }
+	if($qm_chat_online == 1)
+	{ $qm_online_text = sprintf($lang['qm_chat_online_one'], $qm_chat_online); }
+	if($qm_chat_online > 1)
+	{ $qm_online_text = sprintf($lang['qm_chat_online_more'], $qm_chat_online); }
+
+//
+// Quest MOD by Nuladion [END]
+//
+
+
 	$template->assign_vars(array(
 		'TOTAL_POSTS' => sprintf($l_total_post_s, $total_posts),
 		'TOTAL_USERS' => sprintf($l_total_user_s, $total_users),
@@ -489,6 +545,16 @@ if ($total_categories = count($category_rows))
 		'L_MODERATOR' => $lang['Moderators'], 
 		'L_FORUM_LOCKED' => $lang['Forum_is_locked'],
 		'L_MARK_FORUMS_READ' => $lang['Mark_all_forums'], 
+
+		//
+		// Quest MOD by Nuladion [START]
+		// Output the list we generated earlier in this file!
+		//
+			'QM_TOTAL_ONLINE' => $qm_online_text,
+			'QM_PLAYERS' => $qm_players,
+		//
+		// Quest MOD by Nuladion [END]
+		//
 
 		'U_MARK_READ' => append_sid("index.$phpEx?mark=forums"))
 	);
