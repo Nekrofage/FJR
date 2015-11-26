@@ -27,7 +27,7 @@ if ( !defined('IN_PHPBB') )
 
 // Debug Level
 // just comment out this line to disable debugging
-define('DEBUG', 1); // Debugging on
+define('DEBUG', 0); // Debugging on
 
 
 if (!defined('DEBUG')) define('DEBUG', 0); // Debugging off

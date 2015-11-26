@@ -1,11 +1,3 @@
-config.php
-todo.txt
-todo_later.txt
-cache/*.php
-cache/*.phps
-adr/cache/*.php
-
-# REALLY?
-areabb/cache/*.txt
-areabb/cache/*.tpl
-areabb/cache/*.html
+fjr/cache/*.php
+fjr/cache/*.phps
+fjr/adr/cache/*.php

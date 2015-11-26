@@ -92,7 +92,7 @@ class phpbb_seo {
 			'user' => 'membre',
 			'start' => '-', 
 			'gz_ext' => '.gz',
-			'index' => 'index.html'
+			'index' => 'index.php'
 		);
 		// URL Filters
 		$this->phpbb_filter = array('postdays' => 0, 'topicdays' => 0, 'postorder' => 'asc', 'highlight' => '');
