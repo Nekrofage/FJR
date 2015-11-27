@@ -1,0 +1,19 @@
+Ouvrir :
+
+/etc/php.ini
+
+Chercher 
+
+Memory_limit = 8M
+
+Remplacer par 
+
+Memory-limit = 16M
+
+Chercher :
+
+register_globals
+
+Remplacer par : 
+
+register_globals = on
