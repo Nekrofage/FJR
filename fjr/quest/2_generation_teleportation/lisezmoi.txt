@@ -1,0 +1,3 @@
+Insertion des requêtes
+
+$ mysql -u root -pmot2passe fjr < requetes_teleportation.sql
