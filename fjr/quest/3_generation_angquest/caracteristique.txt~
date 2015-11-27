@@ -1,0 +1,14 @@
+// 640 * 480 = 307200 
+//
+// ici 30 et 20 sont les dimensions d'une carte type 
+// 640/30=21
+// 480/20=24
+
+// Nombre de carte : 21 * 24 = 504
+
+//Taille d'une carte : largeur 21 et hauteur : 24
+
+
+// 30 * 20 = 600
+
+

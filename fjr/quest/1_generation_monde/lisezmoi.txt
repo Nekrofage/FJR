@@ -1,0 +1,13 @@
+1) Dans la table quest_maps, supprimer l'autoincrement de la clé primaire id
+2) Panneau d'administation : [Quest MOD][General Settings]
+						-> [Hauteur carte par defaut] : 30
+						-> [Largeur carte par defaut] : 20
+3) Déplacer les joueurs sur la carte n°260
+
+Panneau d'administation : [Quest MOD][User Admin][Deplacer tous les persos] 
+						-> [Nom de la carte] : 260
+						-> Coordonées : 20 x 20
+
+4) Copier les images des cartes fjr/quest/1_generation_monde/cartas/* fjr/map_maps
+
+5) Inserer le fichier requetes.sql.gz dans la base de donnée fjr avec PhpMyAdmin

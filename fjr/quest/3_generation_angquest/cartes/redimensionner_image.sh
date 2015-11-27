@@ -1,0 +1,1 @@
+for i in *.png; do convert -resize 93x46 $i `basename $i .png`_mini.png;echo $i ; done
