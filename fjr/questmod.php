@@ -88,21 +88,25 @@ $useaction = '
 
 <center>
 <table width="100%" height="100%" cellpadding="0" cellspacing="0">
+<!--
 <tr>
 	<td class="row1" align="center">
 		<img src="'.$phpbb_root_path.'images/map_misc/banner.gif">
 	</td>
 </tr>
+-->
 <tr>
 	<td class="row1" align="center">
-		<iframe src="./map.php" height="270" width="640" scrolling="no" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="map"></iframe>
+		<iframe src="./map.php" height="700" width="1024" scrolling="no" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="map"></iframe>
 	</td>
 </tr>
+<!--
 <tr>
 	<td class="row1" width="100%" align="center"><span class="gen">
 		<b>'.$lang['qm_chatbox'].'</b>
 	</span></td>
 </tr>
+-->
 <tr>
 	<td width="100%" align="center" height="100%" class="row1">
 		<table width="100%" height="100%" cellpadding="0" cellspacing="0" border="0">
@@ -122,16 +126,19 @@ $useaction = '
 		<iframe src="./qm_chat.php?mode=input" height="25" width="640" scrolling="no" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="chatbox_input"></iframe>
 	</td>
 </tr>
+<!--
 <tr>
 	<td class="row1" width="100%" align="center"><span class="gen">
 		<b>'.$lang['qm_midiplayer'].'</b>
 	</span></td>
 </tr>
+
 <tr>
 	<td class="row1" align="center">
 		<iframe src="./qm_midi.php" height="25" width="640" scrolling="no" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="midi"></iframe>
 	</td>
 </tr>
+-->
 </table>
 
 ';
