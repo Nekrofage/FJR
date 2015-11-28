@@ -393,6 +393,10 @@ $template->assign_vars(array(
 	'U_PRIVATEMSGS_POPUP' => append_sid('privmsg.'.$phpEx.'?mode=newpm'),
 	'U_SEARCH' => append_sid('search.'.$phpEx),
 	'U_MEMBERLIST' => append_sid('memberlist.'.$phpEx),
+    ##=== ADR START ===##
+    'U_CARD_DUEL' => append_sid('card_duel.'.$phpEx),
+    'L_CARD_DUEL' => $lang['Card_Duel'],
+    ##=== ADR END ===##
 	'U_ADR' => append_sid('adr_character.'.$phpEx), 
 	'L_ADR' => $lang['Adr_character_page_name'], 
 	'U_TOWNMAP' => append_sid('adr_TownMap.'.$phpEx), 
