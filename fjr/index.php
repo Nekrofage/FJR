@@ -258,6 +258,29 @@ elseif ($viewcat == -1)
 if ($total_categories = count($category_rows))
 {
 	$is_auth_ary = auth(AUTH_VIEW, AUTH_LIST_ALL, $userdata); //, $forum_data);
+
+$itemarray = explode('ß', str_replace("Þ", "", $userdata['user_items']));
+    $sql = "select name, accessforum from fjr_shopitems where accessforum != '0' and accessforum > '0'";
+    if ( !($result = $db->sql_query($sql)) ) { message_die(GENERAL_MESSAGE, "Database Connection Error!".mysql_error()); }
+    $num_rows = mysql_num_rows($result);
+
+    $itemformaccess = array();
+    $itemcataccess = array();
+    for ($x = 0; $x < $num_rows; $x++)
+    {
+    $row = mysql_fetch_array($result);
+    if (in_array($row['name'], $itemarray))
+    {
+    $itemformaccess[] = $row['accessforum'];
+
+    $sql = "select cat_id from " . FORUMS_TABLE . " where forum_id = '{$row['accessforum']}'";
+    if ( !($result = $db->sql_query($sql)) ) { message_die(GENERAL_MESSAGE, "Database Connection Error: ".mysql_error()); }
+    $row2 = mysql_fetch_array($result);
+
+    $itemcataccess[] = $row2['cat_id'];
+    }
+    }
+
 	$sql = "SELECT f.*, p.post_time, p.post_username,
 		u.username, u.user_id, u.user_level, u.user_color, u.user_group_id,
 		t.topic_title, t.topic_id, t.topic_attribute
@@ -603,6 +626,12 @@ if ($total_categories = count($category_rows))
 		{
 			$category_rows[$i]['cat_title'] = smilies_pass($category_rows[$i]['cat_title']);
     	}
+
+   if (in_array($cat_id, $itemcataccess)) {
+   $display_forums = true;
+   }
+
+
 		//
 		// Yes, we should, so first dump out the category
 		// title, then, if appropriate the forum list
@@ -668,7 +697,7 @@ if ($total_categories = count($category_rows))
 					$forum_id = $forum_data[$j]['forum_id'];
 
 					// jump over a non-authorised branch
-					if ( !$is_auth_ary[$forum_id]['auth_view'] )
+                     if ( $is_auth_ary[$forum_id]['auth_view'] || in_array($forum_id, $itemformaccess))
 					{
 						$j = $_sf_last_child_idx[$forum_id];
 						continue;

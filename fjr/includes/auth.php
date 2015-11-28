@@ -52,6 +52,23 @@ function auth($type, $forum_id, $userdata, $f_access = '')
 {
 	global $db, $lang;
 
+    // start item auths
+    $itemarray = explode('ß', str_replace("Þ", "", $userdata['user_items']));
+
+    $sql = "select name, accessforum from fjr_shopitems where accessforum != '0'";
+    if ( !($result = $db->sql_query($sql)) ) { message_die(GENERAL_MESSAGE, "Database Connection Error!<br>".mysql_error()); }
+    $num_rows = mysql_num_rows($result);
+
+    $itemformaccess = array();
+    for ($x = 0; $x < $num_rows; $x++)
+    {
+    $row = mysql_fetch_array($result);
+    if (in_array($row['name'], $itemarray))
+    {
+    $itemformaccess[] = $row['accessforum'];
+    }
+    } 
+
 	switch( $type )
 	{
 		case AUTH_ALL:
@@ -214,6 +231,11 @@ function auth($type, $forum_id, $userdata, $f_access = '')
 		{
 			$value = $f_access[$key];
 
+           if (in_array($forum_id, $itemformaccess) && (!in_array("auth_sticky",$auth_fields) && !in_array("auth_announce",$auth_fields) && !in_array("auth_delete",$auth_fields) && ($userdata['user_level'] == 0)))
+           {
+              $value = 1;
+           }
+
 			switch( $value )
 			{
 				case AUTH_ALL:
@@ -252,6 +274,13 @@ function auth($type, $forum_id, $userdata, $f_access = '')
 			{
 				$value = $f_access[$k][$key];
 				$f_forum_id = $f_access[$k]['forum_id'];
+
+                   if (in_array($forum_id, $itemformaccess) && (!in_array("auth_sticky",$auth_fields) && !in_array("auth_announce",$auth_fields) && !in_array("auth_delete",$auth_fields) && ($userdata['user_level'] == 0)))
+                   {
+                      $value = 1;
+                   }
+
+
 				$u_access[$f_forum_id] = isset($u_access[$f_forum_id]) ? $u_access[$f_forum_id] : array();
 
 				switch( $value )

@@ -21,6 +21,9 @@
  ***************************************************************************/
 
 define('IN_PHPBB', true);
+
+define('IN_CASHMOD', true);
+
 $phpbb_root_path = './';
 include($phpbb_root_path . 'extension.inc');
 include($phpbb_root_path . 'common.'.$phpEx);
@@ -1430,6 +1433,10 @@ else if ( $submit || $refresh || $mode != '' )
 
 				$emailer->send();
 				$emailer->reset();
+							}
+			$pmer = new cash_user($userdata['user_id'],$userdata);
+			$pmer->give_pm_amount();
+			while ( false ) {
 			}
 		}
 
@@ -1641,7 +1648,7 @@ else if ( $submit || $refresh || $mode != '' )
 						$len = strlen('[/quote]');
 						$privmsg_message = substr_replace($privmsg_message, '[/quote][color=' . $privmsg['user_colortext'] . ']', $pos, $len);
 						$savemsg = substr($privmsg_message, strpos($privmsg_message, '[quote'), $pos -  strpos($privmsg_message, '[quote'));
-						$privmsg_message = substr( $privmsg_message, 0, strpos($privmsg_message, '[quote')) . 'àç#;§$£µù1-p' . substr($privmsg_message, $pos);
+						$privmsg_message = substr( $privmsg_message, 0, strpos($privmsg_message, '[quote')) . '\E0\E7#;\A7$\A3\B5\F91-p' . substr($privmsg_message, $pos);
 					}
 
 					$colortext_name = "#(\[quote=.(.*)\])(\[\/color\])#";
@@ -1658,7 +1665,7 @@ else if ( $submit || $refresh || $mode != '' )
 
 					$privmsg_message = str_replace('[color=' . $privmsg['user_colortext'] . '][/color]', '', $privmsg_message);
 
-					$privmsg_message = str_replace('àç#;§$£µù1-p', $savemsg, $privmsg_message);
+					$privmsg_message = str_replace('\E0\E7#;\A7$\A3\B5\F91-p', $savemsg, $privmsg_message);
 					$privmsg_message = str_replace('[/color][/color]', '[/color]', $privmsg_message);
 				}
 				else

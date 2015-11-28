@@ -22,6 +22,9 @@
 	  <th class="thTop" width="20" nowrap="nowrap">&nbsp;{L_FLAG}&nbsp;</th>	  
 	  <th class="thTop" nowrap="nowrap">{L_JOINED}</th>
 	  <th class="thTop" nowrap="nowrap">{L_POSTS}</th>
+	  	  <!-- BEGIN cashrow -->
+	  <th class="thTop" nowrap="nowrap">{cashrow.NAME}</th>
+	  <!-- END cashrow -->
 	  <th class="thTop" nowrap="nowrap">{L_POINTS}</th>	  
 	  <th class="thCornerR" nowrap="nowrap">{L_WEBSITE}</th>
 	</tr>
@@ -43,12 +46,15 @@
 	  </span></td>	  
 	  <td class="{memberrow.ROW_CLASS}" align="center" valign="middle"><span class="gensmall">{memberrow.JOINED}</span></td>
 	  <td class="{memberrow.ROW_CLASS}" align="center" valign="middle"><span class="gen">{memberrow.POSTS}</span></td>
+	  	  <!-- BEGIN cashrow -->
+	  <td class="{memberrow.ROW_CLASS}" align="center" valign="middle"><span class="gen">{memberrow.cashrow.CASH_DISPLAY}</span></td>
+	  <!-- END cashrow -->
 	  <td class="{memberrow.ROW_CLASS}" align="center" valign="middle"><span class="gen">{memberrow.POINTS}</span></td>	  
 	  <td class="{memberrow.ROW_CLASS}" align="center">&nbsp;{memberrow.WWW_IMG}&nbsp;</td>
 	</tr>
 	<!-- END memberrow -->
 	<tr> 
-	  <td class="catBottom" colspan="11" height="28">&nbsp;</td>
+	  <td class="catBottom" colspan="{NUM_COLUMNS}" height="28">&nbsp;</td>
 	</tr>
   </table>
   <table width="100%" cellspacing="2" border="0" align="center" cellpadding="2">

@@ -507,8 +507,11 @@ function submit_post($mode, &$post_data, &$message, &$meta, &$forum_id, &$topic_
 			add_points($userdata['user_id'], $points);
 		}
 	}
+	
+	$cash_message = $GLOBALS['cm_posting']->update_post($mode, $post_data, $forum_id, $topic_id, $post_id, $topic_type, $bbcode_uid, $post_username, $post_message);
+
 	$meta = '<meta http-equiv="refresh" content="3;url=' . append_sid("viewtopic.$phpEx?" . POST_POST_URL . "=" . $post_id) . '#' . $post_id . '">';
-	$message = $lang['Stored'] . '<br /><br />' . sprintf($lang['Click_view_message'], '<a href="' . append_sid("viewtopic.$phpEx?" . POST_POST_URL . "=" . $post_id) . '#' . $post_id . '">', '</a>') . '<br /><br />' . sprintf($lang['Click_return_forum'], '<a href="' . append_sid("viewforum.$phpEx?" . POST_FORUM_URL . "=$forum_id") . '">', '</a>');
+	$message = $lang['Stored']  . '<br />' . $cash_message. '<br /><br />' . sprintf($lang['Click_view_message'], '<a href="' . append_sid("viewtopic.$phpEx?" . POST_POST_URL . "=" . $post_id) . '#' . $post_id . '">', '</a>') . '<br /><br />' . sprintf($lang['Click_return_forum'], '<a href="' . append_sid("viewforum.$phpEx?" . POST_FORUM_URL . "=$forum_id") . '">', '</a>');
 	$db->clear_cache('posts_');
 	$db->clear_cache('topics_recent_');
 
@@ -652,6 +655,7 @@ function delete_post($mode, &$post_data, &$message, &$meta, &$forum_id, &$topic_
 
 	if ($mode != 'poll_delete')
 	{
+	$GLOBALS['cm_posting']->update_delete($mode, $post_data, $forum_id, $topic_id, $post_id);
 		include($phpbb_root_path . 'includes/functions_search.'.$phpEx);
 
 		$sql = "DELETE FROM " . POSTS_TABLE . " 

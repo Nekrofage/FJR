@@ -163,6 +163,57 @@ $search_img = '<a href="' . $temp_url . '"><img src="' . $images['icon_search'] 
 $search = '<a href="' . $temp_url . '">' . sprintf($lang['Search_user_posts'], $profiledata['username']) . '</a>';
 
 
+
+   if ($board_config['viewprofile'] == "images")
+   {
+   $itempurge = str_replace("Þ", "", $profiledata['user_items']);
+   $itemarray = explode('ß',$itempurge);
+   $itemcount = count ($itemarray);
+   $user_items = "<br>";
+   for ($xe = 0;$xe < $itemcount;$xe++)
+   {
+   if ($itemarray[$xe] != NULL)
+   {
+   if (file_exists('shop/images/'.$itemarray[$xe].'.jpg'))
+   {
+   $user_items .= ' <img src="shop/images/'.$itemarray[$xe].'.jpg" title="'.$itemarray[$xe].'" alt="'.$itemaray[$xe].'">';
+   }
+   elseif (file_exists('shop/images/'.$itemarray[$xe].'.gif'))
+   {
+   $user_items .= ' <img src="shop/images/'.$itemarray[$xe].'.gif" title="'.$itemarray[$xe].'" alt="'.$itemaray[$xe].'">';
+   }
+   }
+   }
+   $usernameurl = '<a href="'.append_sid('shop.'.$phpEx.'?action=inventory&searchid='.$profiledata['user_id'], true).'" class="nav">Items</a>: ';
+   }
+   elseif ($board_config['viewprofile'] == "link")
+   {
+   $usernameurl = '<a href="'.append_sid('shop.'.$phpEx.'?action=inventory&searchid='.$profiledata['user_id'], true).'" class="nav">Items</a>';
+   }
+
+    //start of effects store checks
+    $shoparray = explode("ß", $board_config['specialshop']);
+    $shoparraycount = count ($shoparray);
+    $shopstatarray = array();
+    for ($x = 0; $x < $shoparraycount; $x++)
+    {
+    $temparray = explode("Þ", $shoparray[$x]);
+    $shopstatarray[] = $temparray[0];
+    $shopstatarray[] = $temparray[1];
+    }
+    //end of effects store checks
+
+    $usereffects = explode("ß", $profiledata['user_effects']);
+    $userprivs = explode("ß", $profiledata['user_privs']);
+    $usercustitle = explode("ß", $profiledata['user_custitle']);
+    $userbs = array();
+    $usercount = count($userprivs);
+    for ($x = 0; $x < $usercount; $x++) { $temppriv = explode("Þ", $userprivs[$x]); $userbs[] = $temppriv[0]; $userbs[] = $temppriv[1]; }
+    $usercount = count($usereffects);
+    for ($x = 0; $x < $usercount; $x++) { $temppriv = explode("Þ", $usereffects[$x]); $userbs[] = $temppriv[0]; $userbs[] = $temppriv[1]; }
+    $usercount = count($usercustitle);
+    for ($x = 0; $x < $usercount; $x++) { $temppriv = explode("Þ", $usercustitle[$x]); $userbs[] = $temppriv[0]; $userbs[] = $temppriv[1]; } 
+
 if (function_exists('get_html_translation_table'))
 {
 	$u_search_author = urlencode(strtr($profiledata['username'], array_flip(get_html_translation_table(HTML_ENTITIES))));
@@ -177,6 +228,10 @@ $template->assign_vars(array(
 	'JOINED' => utf8_encode(create_date($lang['DATE_FORMAT'], $profiledata['user_regdate'], $board_config['board_timezone'])),
 	'POSTER_RANK' => utf8_encode($poster_rank),
 	'RANK_IMAGE' => utf8_encode($rank_image),
+
+    'INVENTORYLINK' => $usernameurl,
+    'INVENTORYPICS' => $user_items,
+
 	'POSTS_PER_DAY' => utf8_encode($posts_per_day),
 	'POSTS' => utf8_encode($profiledata['user_posts']),
 	'PERCENTAGE' => utf8_encode($percentage . '%'), 
@@ -231,6 +286,7 @@ $template->assign_vars(array(
 	'S_PROFILE_ACTION' => append_sid("profile.$phpEx"))
 );
 
+$cm_viewprofile->post_vars($template,$profiledata,$userdata);
 $template->pparse('profile');
 
 

@@ -545,6 +545,19 @@ function init_userprefs($userdata)
 
 	include($phpbb_root_path . 'language/lang_' . $board_config['default_lang'] . '/lang_main.' . $phpEx);
 	
+	if ( defined('IN_CASHMOD') )
+	{
+		if ( !file_exists(@phpbb_realpath($phpbb_root_path . 'language/lang_' . $board_config['default_lang'] . '/lang_cash.'.$phpEx)) )
+		{
+			include($phpbb_root_path . 'language/lang_english/lang_cash.' . $phpEx);
+		}
+		else
+		{
+			include($phpbb_root_path . 'language/lang_' . $board_config['default_lang'] . '/lang_cash.' . $phpEx);
+		}
+	}
+		
+	
 	include($phpbb_root_path . 'adr/language/lang_' . $board_config['default_lang'] . '/lang_adr_common_main.' . $phpEx); 
 	include($phpbb_root_path . 'adr/language/lang_' . $board_config['default_lang'] . '/lang_adr_TownMap_main.' . $phpEx); 
 
@@ -1047,7 +1060,7 @@ function message_die($msg_code, $msg_text = '', $msg_title = '', $err_line = '',
 		if ( $err_line != '' && $err_file != '' )
 		{
 			//
-			// On va ouvrir le fichier incriminé et récupéré ll ligne de l'erreur ainsi que la ligne suivante et les 5 lignes précédentes
+			// On va ouvrir le fichier incrimin\E9 et r\E9cup\E9r\E9 ll ligne de l'erreur ainsi que la ligne suivante et les 5 lignes pr\E9c\E9dentes
 			//
 			$file_array = array();
 			$file_array = explode('/', $err_file);
@@ -1076,10 +1089,10 @@ function message_die($msg_code, $msg_text = '', $msg_title = '', $err_line = '',
 			$file_code_array = array();
 			$file_code_array = @file($phpbb_relativ_path . $file_name);
 
-			// rajoutez des données dans le tableau si vous souhaitez effectuer un débuggage plus large
+			// rajoutez des donn\E9es dans le tableau si vous souhaitez effectuer un d\E9buggage plus large
 			$loop_number = range(10, 0);
 
-			// décalage, permet d'afficher des lignes + loin
+			// d\E9calage, permet d'afficher des lignes + loin
 			$offset = 3;
 
 			$file_code_draw = '';
@@ -1090,7 +1103,7 @@ function message_die($msg_code, $msg_text = '', $msg_title = '', $err_line = '',
 				 . '</b>&nbsp;&nbsp;' . $file_code_array[$err_line - $loop_number[$i] + $offset] . '<br />';
 			}
 
-			// pour éviter toute faille de sécurité il n y aura jamais de débuggage dans config.php
+			// pour \E9viter toute faille de s\E9curit\E9 il n y aura jamais de d\E9buggage dans config.php
 			$file_code_draw = ( ereg('^config.' . $phpEx . '$', $file_name) ) ? '' : $file_code_draw;
 
 			$debug_text .= '<blockquote><div align="left"><br />

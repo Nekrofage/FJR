@@ -21,6 +21,10 @@
  ***************************************************************************/
 
 define('IN_PHPBB', true);
+
+define('IN_CASHMOD', true);
+define('CM_VIEWTOPIC', true);
+
 $phpbb_root_path = './';
 include($phpbb_root_path . 'extension.inc');
 include($phpbb_root_path . 'common.'.$phpEx);
@@ -528,7 +532,7 @@ if ($userdata['user_level'] != ADMIN && $userdata['user_level'] != MOD)
 //
 // Go ahead and pull all data for this topic
 //
-$sql = "SELECT u.username, u.user_id, u.user_posts, u.user_from, u.user_website, u.user_email, u.user_icq, u.user_aim, u.user_yim, u.user_regdate,
+$sql = "SELECT u.username, u.user_id,  u.user_items, u.user_privs, u.user_effects, u.user_custitle, u.user_posts, u.user_from, u.user_website, u.user_email, u.user_icq, u.user_aim, u.user_yim, u.user_regdate,
 		u.user_msnm, u.user_viewemail, u.user_rank, u.user_sig, u.user_colortext, u.user_sig_bbcode_uid, u.user_avatar, u.user_avatar_type,
 		u.user_allowavatar, u.user_allowsmile, u.user_allowdefaultavatar, u.user_allow_viewonline, u.user_session_time, u.user_points,
 		u.user_warnings, u.user_level, u.user_level, u.user_gender, u.user_cell_time, u.user_adr_ban,
@@ -540,6 +544,9 @@ $sql = "SELECT u.username, u.user_id, u.user_posts, u.user_from, u.user_website,
 		AND u.user_id = p.poster_id
 	ORDER BY p.post_time $post_time_order
 	LIMIT $start, ".$board_config['posts_per_page'];
+	
+$cm_viewtopic->generate_columns($template,$forum_id,$sql);	
+	
 //-- mod : post description ----------------------------------------------------
 //-- add
 $sql = str_replace(', pt.post_subject', ', pt.post_subject, pt.post_sub_title', $sql);
@@ -1572,6 +1579,70 @@ $card_hidden = ($g_card_img || $r_card_img || $y_card_img || $b_card_img) ? '<in
 		$donate_points = '';
 	}	
 
+if ($board_config['viewtopic'] == "images")
+        {
+    $itempurge = str_replace("\DE", "", $postrow[$i]['user_items']);
+    $itemarray = explode('\DF',$itempurge);
+    $itemcount = count ($itemarray);
+    $user_items = "<br>";
+    for ($xe = 0;$xe < $itemcount;$xe++)
+        {
+    if ($itemarray[$xe] != NULL)
+        {
+    if ($board_config['viewtopiclimit'] < $xe) { $user_items .= ' <a href="'.append_sid("shop.".$phpEx."?action=inventory&searchid=".$postrow[$i]['user_id']).'" title="'.$postrow[$i]['username'].'\'sInventory">more...</a>'; break; }
+    if (file_exists("shop/images/".$itemarray[$xe].".jpg"))
+        {
+    $user_items .= ' <img src="shop/images/'.$itemarray[$xe].'.jpg" title="'.$itemarray[$xe].'" alt="'.$itemaray[$xe].'">';
+        }
+    elseif (file_exists("shop/images/".$itemarray[$xe].".gif"))
+        {
+    $user_items .= ' <img src="shop/images/'.$itemarray[$xe].'.gif" title="'.$itemarray[$xe].'" alt="'.$itemaray[$xe].'">';
+            }
+        }
+        }
+        }
+    $usernameurl = append_sid("shop.".$phpEx."?action=inventory&searchid=".$postrow[$i]['user_id']);
+
+    $usereffects = explode("\DF", $postrow[$i]['user_effects']);
+    $userprivs = explode("\DF", $postrow[$i]['user_privs']);
+    $usercustitle = explode("\DF", $postrow[$i]['user_custitle']);
+    $userbs = array();
+    $usercount = count($userprivs);
+    for ($x = 0; $x < $usercount; $x++) { $temppriv = explode("\DE", $userprivs[$x]); $userbs[] = $temppriv[0]; $userbs[] = $temppriv[1]; }
+    $usercount = count($usereffects);
+    for ($x = 0; $x < $usercount; $x++) { $temppriv = explode("\DE", $usereffects[$x]); $userbs[] = $temppriv[0]; $userbs[] = $temppriv[1]; }
+    $usercount = count($usercustitle);
+    for ($x = 0; $x < $usercount; $x++) { $temppriv = explode("\DE", $usercustitle[$x]); $userbs[] = $temppriv[0]; $userbs[] = $temppriv[1]; }
+    $shoparray = explode("\DF", $board_config['specialshop']);
+    $shoparraycount = count ($shoparray);
+    $shopstatarray = array();
+    for ($x = 0; $x < $shoparraycount; $x++)
+        {
+    $temparray = explode("\DE", $shoparray[$x]);
+    $shopstatarray[] = $temparray[0];
+    $shopstatarray[] = $temparray[1];
+        }
+    if (($userbs[10] == on) && ($shopstatarray[12] == on)) { $poster = '<font color="'.$userbs[11].'">'.$poster.'</font>'; }
+    if ((($userbs[12] == on) && ($shopstatarray[14] == on)) || (($userbs[14] == on) && ($shopstataray[16] = on))) {
+    $nameeffects = "<span style=\"width:100";
+    if (($userbs[12] == on) && ($shopstatarray[14] == on)) { $nameeffects .= "; filter:shadow(color=#".$userbs[13].", strength=5)"; }
+    if (($userbs[14] == on) && ($shopstatarray[16] == on)) { $nameeffects .= "; filter:glow(color=#".$userbs[15].", strength=5)"; }
+    $nameeffects .= '">'.$poster.'</span>';
+    $poster = $nameeffects;
+        }
+    if ((($userbs[24] == on) && ($shopstatarray[24] == on)) || (($userbs[20] == on) && ($shopstatarray[22] == on)) || (($userbs[22] == on) && ($shopstataray[20] = on)) || (($userbs[18] == on) && ($shopstatarray[18] == on))) {
+    $titleeffects = '<span style="height:10';
+    if (($userbs[22] == on) && ($shopstatarray[20] == on)) { $titleeffects .= "; filter:shadow(color=#".$userbs[23].", strength=5)"; }
+    if (($userbs[20] == on) && ($shopstatarray[22] == on)) { $titleeffects .= "; filter:glow(color=#".$userbs[21].", strength=5)"; }
+    if (($userbs[24] == on) && ($shopstatarray[24] == on)) { $poster_rank = $userbs[25]; }
+    if (($userbs[18] == on) && ($shopstatarray[18] == on)) { $poster_rank = '<font color="'.$userbs[19].'">'.$poster_rank.'</font>'; }
+    $titleeffects .= '">'.$poster_rank.'</span>';
+    $poster_rank = $titleeffects;
+        }
+    if (($shopstatarray[6] == on) && ($userbs[2] != on) && ($poster_rank != "Site Admin")) { $poster_avatar = ""; }
+    if (($shopstatarray[8] == on) && ($userbs[4] != on) && ($poster_rank != "Site Admin")) { $user_sig = ""; }
+    if (($shopstatarray[10] == on) && ($userbs[6] != on) && ($poster_rank != "Site Admin")) { $poster_rank = "None"; $rank_image = ""; } 
+
 	//
 	// Note! The order used for parsing the message _is_ important, moving things around could break any
 	// output
@@ -1666,7 +1737,7 @@ $card_hidden = ($g_card_img || $r_card_img || $y_card_img || $b_card_img) ? '<in
 
 	if (!empty($quicklink_word))
 	{
-		$message = str_replace('\"', '"', substr(preg_replace('#(\µ(((?>([^µ§]+|(?R)))*)\§))#se', "preg_replace(\$quicklink_word, \$quicklink_url, '\\0')", 'µ' . $message . '§'), 1, -1));
+		$message = str_replace('\"', '"', substr(preg_replace('#(\\B5(((?>([^\B5\A7]+|(?R)))*)\\A7))#se', "preg_replace(\$quicklink_word, \$quicklink_url, '\\0')", '\B5' . $message . '\A7'), 1, -1));
 	}
 
 	//
@@ -1837,6 +1908,8 @@ MOD-*/
 		'IP' => $ip,
 		'DELETE_IMG' => $delpost_img,
 		'DELETE' => $delpost,
+    'ITEMSNAME' => $usernameurl,
+    'ITEMS' => $user_items,
 		//-- mod : quick post es -------------------------------------------------------
 		//-- add
 		'I_QP_QUOTE' => $qp_quote_img,
@@ -1865,8 +1938,10 @@ MOD-*/
 		'U_VIEW_POSTER_PROFILE' => ($userdata['user_level'] != ADMIN)? append_sid("profile.$phpEx?mode=viewprofile&amp;" . POST_USERS_URL . "=" . $poster_id) : append_sid("admin/admin_users.$phpEx?mode=edit&amp;" . POST_USERS_URL . "=" . $poster_id . "&amp;sid=" . $userdata['session_id'] ) , 
 		'POSTER_STYLE' => $poster_style_color,
 // End add - Direct user link MOD		
-		'U_POST_ID' => $postrow[$i]['post_id'])
-	);
+		'U_POST_ID' => $postrow[$i]['post_id'])	);
+
+	$cm_viewtopic->post_vars($postrow[$i],$userdata,$forum_id);
+	
 	display_post_attachments($postrow[$i]['post_id'], $postrow[$i]['post_attachment']);
 
 //-- mod : birthday ------------------------------------------------------------

@@ -186,6 +186,11 @@ include $phpbb_root_path . 'includes/functions_bbc_box.'.$phpEx;
 include $phpbb_root_path . 'includes/class_common.' . $phpEx;
 include $phpbb_root_path . 'includes/mods/index.' . $phpEx;
 
+if ( defined('IN_CASHMOD') )
+{
+    include($phpbb_root_path . 'includes/functions_cash.'.$phpEx);
+}
+
 // We do not need this any longer, unset for safety purposes
 unset($dbpasswd);
 

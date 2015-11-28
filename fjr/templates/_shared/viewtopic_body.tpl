@@ -35,7 +35,9 @@
 		<th class="thRight" nowrap="nowrap">{L_MESSAGE}</th>
 	</tr>
 	<tr> 
-		<td class="row1" width="150" align="middle" valign="top" class="{postrow.ROW_CLASS}"><span class="name"><a name="{postrow.U_POST_ID}"></a><a href="{postrow.U_VIEW_POSTER_PROFILE}" class="name" {postrow.POSTER_STYLE}><b>{postrow.POSTER_NAME}</b></a>{postrow.I_QP_QUOTE}</span><br />{postrow.CARD_IMG}<br /><span class="postdetails">{postrow.POSTER_RANK}<br />{postrow.RANK_IMAGE}<br />{postrow.POSTER_AVATAR}<br /><br />{postrow.PAGERANK}<br />{postrow.POSTER_GENDER}<br />{postrow.POSTER_FROM}
+		<td class="row1" width="150" align="middle" valign="top" class="{postrow.ROW_CLASS}"><span class="name"><a name="{postrow.U_POST_ID}"></a><a href="{postrow.U_VIEW_POSTER_PROFILE}" class="name" {postrow.POSTER_STYLE}><b>{postrow.POSTER_NAME}</b></a>{postrow.I_QP_QUOTE}</span><br />{postrow.CARD_IMG}<br /><span class="postdetails">{postrow.POSTER_RANK}<br />{postrow.RANK_IMAGE}<br />{postrow.POSTER_AVATAR}<br /><br />{postrow.PAGERANK}<br />{postrow.POSTER_GENDER}<br />{postrow.POSTER_FROM}<br />
+{postrow.CASH}
+<br /><a href="{postrow.ITEMSNAME}">Items</a>{postrow.ITEMS}
 			<!-- BEGIN birthday -->
 			<br />{L_AGE}:&nbsp;{postrow.birthday.AGE}
 			<!-- BEGIN zodiac --><img class="gensmall" src="{postrow.birthday.I_ZODIAC}" alt="{postrow.birthday.L_ZODIAC}" title="{postrow.birthday.L_ZODIAC}" style="vertical-align:text-bottom;" /><!-- END zodiac -->

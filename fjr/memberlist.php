@@ -20,6 +20,10 @@
  ***************************************************************************/
 
 define('IN_PHPBB', true);
+
+define('IN_CASHMOD', true);
+define('CM_MEMBERLIST', true);
+
 $phpbb_root_path = './';
 include($phpbb_root_path . 'extension.inc');
 include($phpbb_root_path . 'common.'.$phpEx);
@@ -85,6 +89,7 @@ $mode_types_text = array($lang['Sort_Joined'], $lang['Sort_Username'], $lang['So
 $mode_types = array('joined', 'username', 'location', 'posts', 'email', 'website', 'topten', 'points', 'flag');
 //-- fin mod : flags -----------------------------------------------------------
 
+$cm_memberlist->droplists($mode_types_text,$mode_types);
 $select_sort_mode = '<select name="mode">';
 for($i = 0; $i < count($mode_types_text); $i++)
 {
@@ -170,6 +175,9 @@ switch( $mode )
 	case 'points':
 		$order_by = "user_points $sort_order LIMIT $start," . $board_config['topics_per_page'];
 		break;		
+    case $cm_memberlist->modecheck($mode):
+        $order_by = $cm_memberlist->getfield($mode) . " $sort_order LIMIT $start, " . $board_config['topics_per_page'];
+        break;
 	default:
 		$order_by = "user_regdate $sort_order LIMIT $start, " . $board_config['topics_per_page'];
 		break;
@@ -209,6 +217,8 @@ $sql = "SELECT username, user_id, user_viewemail, user_posts, user_regdate, user
 	FROM " . USERS_TABLE . "
 	WHERE user_id <> " . ANONYMOUS . "$letter_sql
 	ORDER BY $order_by";
+$cm_memberlist->generate_columns($template,$sql,8);
+
 //-- mod : flags ---------------------------------------------------------------
 //-- add
 	$sql = str_replace('SELECT ', 'SELECT user_flag, ', $sql);
@@ -358,6 +368,8 @@ if ( $row = $db->sql_fetchrow($result) )
 			'POINTS' => $user_points,			
 			'U_VIEWPROFILE' => append_sid("profile.$phpEx?mode=viewprofile&amp;" . POST_USERS_URL . "=$user_id"))
 		);
+
+		$cm_memberlist->listing($template,$row);
 //-- mod : flags ---------------------------------------------------------------
 //-- add
 		display_flag($row['user_flag'], false, 'memberrow');

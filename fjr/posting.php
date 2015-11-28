@@ -21,6 +21,10 @@
  ***************************************************************************/
 
 define('IN_PHPBB', true);
+define('IN_CASHMOD', true);
+define('CM_POSTING', true);
+
+
 $phpbb_root_path = './';
 include($phpbb_root_path . 'extension.inc');
 include($phpbb_root_path . 'common.'.$phpEx);
@@ -237,7 +241,7 @@ switch ( $mode )
 			message_die(GENERAL_MESSAGE, $lang['No_topic_id']);
 		}
 
-		$sql = "SELECT f.*, t.topic_status, t.topic_title, t.topic_type  
+		$sql = "SELECT f.*, t.topic_status, t.topic_title, t.topic_type , t.topic_poster 
 			FROM " . FORUMS_TABLE . " f, " . TOPICS_TABLE . " t
 			WHERE t.topic_id = $topic_id
 				AND f.forum_id = t.forum_id";
@@ -272,11 +276,15 @@ switch ( $mode )
 // here we added
 //	, pt.post_sub_title
 //-- modify
+		$temp = $submit;
+		$submit = !(!$submit || ( isset($board_config['cash_disable']) && !$board_config['cash_disable'] && (($mode == 'editpost') || ($mode == 'delete'))));
 		$select_sql = (!$submit) ? ', t.topic_title, p.enable_bbcode, p.enable_html, p.enable_smilies, p.enable_sig, p.post_username, pt.post_subject, pt.post_sub_title, pt.post_text, pt.bbcode_uid, u.username, u.user_id, u.user_sig, u.user_colortext, u.user_sig_bbcode_uid' : '';
 //-- fin mod : post description ------------------------------------------------		
 		$from_sql = ( !$submit ) ? ", " . POSTS_TEXT_TABLE . " pt, " . USERS_TABLE . " u" : '';
 		$where_sql = ( !$submit ) ? "AND pt.post_id = p.post_id AND u.user_id = p.poster_id" : '';
-
+		$submit = $temp;
+		unset($temp);
+		
 		$sql = "SELECT f.*,
 			t.topic_id, t.topic_attribute, t.topic_status, t.topic_type, t.topic_first_post_id, t.topic_last_post_id, t.topic_vote,
 			p.post_id, p.poster_id
@@ -327,6 +335,8 @@ if ( ($result = $db->sql_query($sql)) && ($post_info = $db->sql_fetchrow($result
 	{
 		$topic_id = $post_info['topic_id'];
 
+		$post_data['post_text'] = ( ($mode == 'editpost') || ($mode == 'delete') ) ? $post_info['post_text'] : '';
+		$post_data['bbcode_uid'] = ( ($mode == 'editpost') || ($mode == 'delete') ) ? $post_info['bbcode_uid'] : '';
 		$post_data['poster_post'] = ( $post_info['poster_id'] == $userdata['user_id'] ) ? true : false;
 		$post_data['first_post'] = ( $post_info['topic_first_post_id'] == $post_id ) ? true : false;
 		$post_data['last_post'] = ( $post_info['topic_last_post_id'] == $post_id ) ? true : false;
@@ -405,6 +415,7 @@ if ( ($result = $db->sql_query($sql)) && ($post_info = $db->sql_fetchrow($result
 			$post_data['topic_type'] = POST_NORMAL;
 		}
 
+        $post_data['topic_poster'] = ( $mode == 'reply' ) ? $post_info['topic_poster'] : 0;
 		$post_data['first_post'] = ( $mode == 'newtopic' ) ? true : 0;
 		$post_data['last_post'] = false;
 		$post_data['has_poll'] = false;
@@ -1223,7 +1234,7 @@ else
 					$len = strlen('[/quote]');
 					$message = substr_replace($message, '[/quote][color=' . $post_info['user_colortext'] . ']', $pos, $len);
 					$savemsg = substr($message, strpos($message, '[quote'), $pos -  strpos($message, '[quote'));
-					$message = substr( $message, 0, strpos($message, '[quote')) . 'àç#;§$£µù1-p' . substr($message, $pos);
+					$message = substr( $message, 0, strpos($message, '[quote')) . '\E0\E7#;\A7$\A3\B5\F91-p' . substr($message, $pos);
 				}
 
 				$colortext_name = "#(\[quote=.(.*)\])(\[\/color\])#";
@@ -1240,7 +1251,7 @@ else
 
 				$message = str_replace('[color=' . $post_info['user_colortext'] . '][/color]', '', $message);
 
-				$message = str_replace('àç#;§$£µù1-p', $savemsg, $message);
+				$message = str_replace('\E0\E7#;\A7$\A3\B5\F91-p', $savemsg, $message);
 				$message = str_replace('[/color][/color]', '[/color]', $message);
 			}
 			else

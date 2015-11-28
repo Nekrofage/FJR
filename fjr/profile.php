@@ -20,6 +20,13 @@
  *
  ***************************************************************************/
 define('IN_PHPBB', true);
+
+if ( (isset($HTTP_GET_VARS['mode']) && ($HTTP_GET_VARS['mode'] == 'viewprofile')) || (isset($HTTP_POST_VARS['mode']) && ($HTTP_POST_VARS['mode'] == 'viewprofile')) )
+{
+	define('IN_CASHMOD', true);
+	define('CM_VIEWPROFILE',true);
+}
+
 $phpbb_root_path = './';
 include($phpbb_root_path . 'extension.inc');
 include($phpbb_root_path . 'common.'.$phpEx);
