@@ -1326,4 +1326,4 @@ $lang['Disable_rewrite_explain'] = 'La ré-écriture d\'adresses peut être désacti
 
 // V: pm threshold, better error message
 $lang['Not_enough_messages_to_pm'] = 'Vous devez participer plus au forum avant de pouvoir utiliser les messages privés';
-$lang['Card_Duel'] = "PhpBB Card Duel";
+$lang['Card_Duel'] = "Card Duel";

@@ -7,7 +7,7 @@
   </tr>
 <!-- BEGIN shop_cats -->
   <tr>
-    <td><img src="/images/card_duel/shops/{shop_cats.CD_IMAGES}"></td>
+    <td><img src="../images/card_duel/shops/{shop_cats.CD_IMAGES}"></td>
     <td>{shop_cats.CD_SHOP_NAMES}</td>
     <td>{shop_cats.CD_DESCRIPTIONS}</td>
     <td><a href="{shop_cats.CD_SHOP_CAT_EDIT}">{CD_EDIT}</a> | <a href="{shop_cats.CD_SHOP_CAT_DELETE}">{CD_DELETE}</a></td>

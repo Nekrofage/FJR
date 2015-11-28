@@ -6,9 +6,9 @@
   </tr>
 <!-- BEGIN elements -->
   <tr>
-    <td><img src="/images/card_duel/elements/{elements.CD_CARD_IMAGE_NAME}"></td>
+    <td><img src="../images/card_duel/elements/{elements.CD_CARD_IMAGE_NAME}"></td>
     <td>{elements.CD_CARD_ELEMENT_NAME}</td>
-    <td><a href="{elements.CD_CARD_EDIT}">{CD_EDIT}</a> | <a href="{elements.CD_CARD_DELETE}">{CD_DELETE}</a> </td>
+    <td><a href="../{elements.CD_CARD_EDIT}">{CD_EDIT}</a> | <a href="{elements.CD_CARD_DELETE}">{CD_DELETE}</a> </td>
   </tr>
 <!-- END elements -->
 </table>

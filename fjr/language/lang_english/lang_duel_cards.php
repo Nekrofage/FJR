@@ -1,0 +1,149 @@
+<?php 
+/*************************************************************************** 
+* 						lang_duel_cards.php [French] 
+* 							------------------- 
+*
+* 						Translation : 
+* 					Forums : 
+* 
+****************************************************************************/ 
+
+
+
+//General Lanauge Keys
+$lang['CD_Action'] = "Action";
+$lang['CD_Play'] = "Jouer";
+$lang['CD_Add_Card'] = "Ajouter une carte";
+$lang['CD_Card_Deleted'] = "Carte supprimée";
+$lang['CD_Card_Added'] = "Carte ajoutée";
+$lang['CD_Card_HP'] = "Points de santé";
+$lang['CD_Card_MP'] = "Points de magie";
+$lang['CD_Card_Attack'] = "Pouvoir d'attaque";
+$lang['CD_Card_Updated'] = "Carte mise à jour";
+$lang['CD_Card_Defense'] = "Pouvoir de défense";
+$lang['CD_Card_Magic_Attack'] = "Pouvoir d'attaque magique";
+$lang['CD_Card_Magic_Defense'] = "Pouvoir de défense magique";
+$lang['CD_Add_Element'] = "Ajouter un élément";
+$lang['CD_Card_Element_Name'] = "Nom de l'élément";
+$lang['CD_Card_Image_Path'] = "Chemin de l'image";
+$lang['CD_Card_Image'] = "Image de la carte";
+$lang['CD_Card_Name'] = "Nom de la carte";
+$lang['CD_Card_Price'] = "Coût de la carte";
+$lang['CD_Card_Type'] = "Type de carte";
+$lang['CD_Card_MP_Cost'] = "Coût de MP";
+$lang['CD_Card_Req_Level'] = "Niveau requis";
+$lang['CD_Card_Duration'] = "Durée de la carte";
+$lang['CD_Card_Turn_Length'] = "Longueur de la carte";
+$lang['CD_Card_Element'] = "Elément (Obligatoire)";
+$lang['CD_Shop'] = "Boutique";
+$lang['CD_Delete'] = "Supprimer";
+$lang['CD_Description'] = "Description";
+$lang['CD_Edit'] = "Editer";
+$lang['CD_Edit_Card'] = "Editer la Carte";
+$lang['CD_Edit_Element'] = "Editer l'élément";
+$lang['CD_Effect_Length'] = "Longueur de l'effet";
+$lang['CD_Effect_Length1'] = "Longueur de l'effet(Tours)";
+$lang['CD_Effect'] = "Effet";
+$lang['CD_Element'] = "Elément";
+$lang['CD_Element_Added'] = "Elément ajouté";
+$lang['CD_Element_Name'] = "Nom de l'élément";
+$lang['CD_Element_Updated'] = "Elément mis à jour";
+$lang['CD_Card_Element_Image_Name'] = "Nom de l'image";
+$lang['CD_Image'] = "Image";
+$lang['CD_MP_Cost'] = "Coût de MP";
+$lang['CD_Item_HP1'] = "HP de l'objet";
+$lang['CD_Item_MP1'] = "MP de l'objet";
+$lang['CD_Item_HP'] = "Points de santé de l'objet (+ , - )";
+$lang['CD_Item_MP'] = "Points de magie de l'objet (+ , - )";
+$lang['CD_Item_Attack'] = "Pouvoir d'attaque de l'objet";
+$lang['CD_Item_Defense'] = "Pouvoir de défense de l'objet";
+$lang['CD_Item_Magic_Attack'] = "Pouvoir d'attaque magique de l'objet";
+$lang['CD_Item_Magic_Defense'] = "Pouvoir de défense magique de l'objet";
+$lang['CD_Item_Deleted'] = "Objet ajouté avec succès";
+$lang['CD_Item_MP_Use'] = "Utiliser des points de magie";// ou "Utilisation des points de magie"
+$lang['CD_Shop_Name'] = "Nom de la boutique";
+$lang['CD_Add_Shop_Cat'] = "Ajouter une catégorie de boutique";
+$lang['CD_Edit_Shop_Cat'] = "Editer la catégorie de boutique";
+$lang['CD_Shop_Image'] = "Image de la boutique";
+$lang['CD_Shop_Updated'] = "Boutique mise à jour";
+$lang['CD_Shop_Added'] = "Boutique ajoutée";
+$lang['CD_Shop_Deleted'] = "Boutique supprimée";
+$lang['CD_Purchase'] = "Acheter";
+$lang['CD_Back'] = "Retourner à la page précédente";
+$lang['CD_Back1'] = "Retourner à l'inventaire";
+$lang['CD_Card_Purchased'] = "Carte achetée avec succès";
+$lang['CD_Card_Not_Purchased'] = "Vous n'avez pas assez de points pour acheter cette carte.";
+$lang['CD_Cat_Name'] = "Type de carte";
+$lang['CD_Inventory'] = "Inventaire";
+$lang['CD_Sell'] = "Vendre";
+$lang['CD_Delete'] = "Supprimer";
+$lang['CD_Card_Shop'] = "Boutique de cartes";
+$lang['CD_Card_Deleted'] = "Carte supprimée avec succès";
+$lang['CD_Card_Sold'] = "Carte vendue avec succès";
+$lang['CD_Card_Added'] = "Carte ajouté au jeu avec succès";
+$lang['CD_Deck_Card_Deleted'] = "Carte supprimé du jeu avec succès";
+$lang['CD_Card_Not_Added'] = "La carte a déjà été rajouté au jeu";
+$lang['CD_Deck_Name'] = "Nom du jeu";
+$lang['CD_Deck_Delete'] = "Supprimer le jeu";
+$lang['CD_Deck_Delete_Card'] = "Supprimer la carte du jeu";
+$lang['CD_Deck_Create'] = "Créer un jeu";
+$lang['CD_Deck_Created'] = "Jeu créé";
+$lang['CD_Deck_Deleted'] = "Jeu supprimé";
+$lang['CD_Deck_Create_Dup'] = "Vous avez déjà un jeu avec le même nom";
+$lang['CD_Add_To_Deck'] = "Ajouté au jeu";
+$lang['CD_Game_Not_Posted'] = "Vous avez déjà un défi global de posté";
+$lang['CD_Game_Posted'] = "Votre défi global a été envoyé";
+$lang['CD_Accept_Challenge'] = "Accepter le défi";
+$lang['CD_Decline_Challenge'] = "Refuser le défi";
+$lang['CD_Game_Challenge'] = "Défi envoyé";
+$lang['CD_Game_Not_Challenge'] = "Le défi ne peut pas être envoyé, soit vous avez déjà joué contre cette personne, soit vous lui avez déjà envoyé un défi";
+$lang['CD_Card_Challenge'] = "Défi de duel de cartes";
+$lang['CD_Card_Challenge_Declined'] = "Défi de duel de cartes refusé";
+$lang['CD_Card_Challenge_Accepted'] = "Défi de duel de cartes accepté";
+$lang['CD_Game_Cant_Challenge_Self'] = "Vous ne pouvez pas vous défier vous-même !";
+$lang['CD_Game_Challenge_Accepted'] = "Vous avez accepté ce défi";
+$lang['CD_Game_Challenge_Declined'] = "Vous avez refusé ce défi";
+$lang['CD_Challenge_Declined'] = "Votre défi a été refusé par ";
+$lang['CD_Challenge_Accepted'] = "Votre défi a été accepté par ";
+$lang['CD_Deck_Error_Card_Back'] = "Votre jeu doit avoir un dos de carte";
+$lang['CD_Deck_Error_Character'] = "Votre jeu doit avoir au moins un personnage et un dos de carte";
+$lang['CD_You_Drawn_Card'] = "Vous avez tiré une carte.";
+$lang['CD_Opp_Drawn_Card'] = " a tiré une carte.";
+$lang['CD_You_Played_Card'] = "Vous avez joué une carte.";
+$lang['CD_Opp_Played_Card'] = " a joué une carte.";
+$lang['CD_You_Discard_Card'] = "Vous avez retiré une carte."; 
+$lang['CD_Opp_Discard_Card'] = " a retiré une carte";
+$lang['CD_Attack'] = "ATTAQUE";
+$lang['CD_Magic_Attack'] = "ATTAQUE MAGIQUE";
+$lang['CD_Discard'] = "RETIRER";
+$lang['CD_Play'] = "JOUER";
+$lang['CD_Use'] = "UTILISER";
+$lang['CD_Draw_Card'] = "TIRER UNE CARTE";
+$lang['CD_End_Turn'] = "FIN DE TOUR";// Ou "TERMINER LE TOUR"
+$lang['CD_Your_HP'] = "Vos HP: ";
+$lang['CD_Your_MP'] = "Vos MP: ";
+$lang['CD_Opp_HP'] = "HP de l'adversaire: ";
+$lang['CD_Opp_MP'] = "MP de l'adversaire: ";
+$lang['CD_Challnged_By'] = "Vous avez été défié par %x dans un match de phpBB Card Duels. Visitez la page phpBB Card Duel pour accepter ce défi.";
+$lang['CD_Deck_Req_Back'] = "Votre jeu doit avoir un dos de carte.";
+$lang['CD_Deck_Req_Char_Back'] = "Votre jeu doit avoir au moins un personnage et un dos de carte";
+$lang['CD_Multi_Card_Back'] = "Vous pouvez seulement avoir un dos et un personnage de carte.";
+$lang['CD_Username'] = "Nom d'utilisateur";
+$lang['CD_Deck'] = "Jeu";
+$lang['CD_Card_Info'] =  "Infos de la carte";
+$lang['CD_Card_Image'] = "Image de la carte";
+$lang['CD_Return_Index'] = "Retourner sur l'index";
+$lang['CD_Your_Card_Decks'] = "Vos jeux de cartes";
+$lang['CD_Card_Shops'] = "Boutiques de cartes";
+$lang['CD_Your_Card_Inv'] = "Votre inventaire de cartes";
+$lang['CD_Return_Card_Duel_Main'] = "Retourner sur l'index de phpBB Card Duels";
+$lang['CD_Card_Logo'] = "Logo";
+$lang['CD_Card_Deck_Options'] = "Options du jeu";
+$lang['CD_Inventory'] = "Inventaire";
+$lang['CD_Challenge'] = "Défier";//ou "Défi"
+$lang['CD_Global_Challenge'] = "Poster un défi global";
+$lang['CD_Oppoment'] = "Adversaire";
+$lang['CD_Challenger'] = "Challenger";
+$lang['CD_Accept'] = "Accepter";
+$lang['CD_Decline'] = "Refuser";
+?>

@@ -9,7 +9,7 @@
   </tr>
   <!-- BEGIN cards -->
    <tr>
-    <td><img src="/images/card_duel/cards/{cards.CD_CARD_IMAGES}"></td>
+    <td><img src="../images/card_duel/cards/{cards.CD_CARD_IMAGES}"></td>
     <td>{cards.CD_CARD_NAMES}</td>
     <td>{cards.CD_CARD_PRICES}</td>
     <td>{cards.CD_CARD_TYPES}</td>
