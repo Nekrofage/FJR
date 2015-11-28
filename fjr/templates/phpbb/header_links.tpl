@@ -12,7 +12,13 @@
 <!-- BEGIN switch_user_logged_out -->
 	&nbsp;<a href="{U_REGISTER}" class="mainmenu"><img src="templates/{T_TEMPLATE_NAME}/{T_STYLE_NAME}/images/icon_mini_register.gif" width="12" height="13" border="0" alt="{L_REGISTER}" hspace="3" />{L_REGISTER}</a>&nbsp;
 	<!-- END switch_user_logged_out -->&nbsp;						
-<a href="{U_PROFILE}" class="mainmenu"><img src="templates/{T_TEMPLATE_NAME}/{T_STYLE_NAME}/images/icon_mini_profile.gif" width="12" height="13" border="0" alt="{L_PROFILE}" hspace="3" />{L_PROFILE}</a>&nbsp; &nbsp;<a href="{U_PRIVATEMSGS}" class="mainmenu"><img src="templates/{T_TEMPLATE_NAME}/{T_STYLE_NAME}/images/icon_mini_message.gif" width="12" height="13" border="0" alt="{PRIVATE_MESSAGE_INFO}" hspace="3" />{PRIVATE_MESSAGE_INFO}</a>&nbsp; &nbsp;<a href="{U_LOGIN_LOGOUT}" class="mainmenu"><img src="templates/{T_TEMPLATE_NAME}/{T_STYLE_NAME}/images/icon_mini_login.gif" width="12" height="13" border="0" alt="{L_LOGIN_LOGOUT}" hspace="3" />{L_LOGIN_LOGOUT}</a>&nbsp;&nbsp;</span></td>
+<a href="{U_PROFILE}" class="mainmenu"><img src="templates/{T_TEMPLATE_NAME}/{T_STYLE_NAME}/images/icon_mini_profile.gif" width="12" height="13" border="0" alt="{L_PROFILE}" hspace="3" />{L_PROFILE}</a>&nbsp; &nbsp;<a href="{U_PRIVATEMSGS}" class="mainmenu"><img src="templates/{T_TEMPLATE_NAME}/{T_STYLE_NAME}/images/icon_mini_message.gif" width="12" height="13" border="0" alt="{PRIVATE_MESSAGE_INFO}" hspace="3" />{PRIVATE_MESSAGE_INFO}</a>&nbsp; &nbsp;
+
+<a href="{U_LOGIN_LOGOUT}" class="mainmenu"><img src="templates/{T_TEMPLATE_NAME}/{T_STYLE_NAME}/images/icon_mini_login.gif" width="12" height="13" border="0" alt="{L_LOGIN_LOGOUT}" hspace="3" />{L_LOGIN_LOGOUT}</a>&nbsp;&nbsp;
+ &nbsp;{HOUSE}&nbsp;
+</span>
+
+</td>
 </tr>
 <tr>
 	<td height="25" align="center" valign="top" nowrap="nowrap"><span class="mainmenu">&nbsp;<a href="arcade.php" class="mainmenu"><img src="templates/{T_TEMPLATE_NAME}/{T_STYLE_NAME}/images/icon_mini_arcade.gif" width="12" height="13" border="0" alt="Arcade" hspace="3" />Arcade</a>&nbsp;&nbsp;

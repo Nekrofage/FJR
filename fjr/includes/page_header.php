@@ -288,6 +288,26 @@ $db->sql_freeresult($result);
 // Format Timezone. We are unable to use array_pop here, because of PHP3 compatibility
 $l_timezone = explode('.', $board_config['board_timezone']);
 $l_timezone = (count($l_timezone) > 1 && $l_timezone[count($l_timezone)-1] != 0) ? $lang[sprintf('%.1f', $board_config['board_timezone'])] : $lang[number_format($board_config['board_timezone'])];
+
+
+
+// House MOD Start
+$sql = "SELECT enabled FROM " . HOUSE_SETTINGS_TABLE . "
+		WHERE var=1";
+if ( !($result = $db->sql_query($sql)) )
+	message_die(GENERAL_MESSAGE, 'Fatal Error Getting House Configs!');
+$hcrow = mysql_fetch_array($result);
+if ( !$hcrow['enabled'] )
+	$house = '<img src="templates/' . $theme['template_name'] . '/images/icon_mini_house.gif" width="13" height="13" border="0" title="' . $lang['House_disabled'] . '" alt="' . $lang['House_disabled'] . '" hspace="3" />' . $lang['House_house'];
+else
+{
+	$house_link = append_sid("house.$phpEx");
+	$house = '<a href="' . $house_link . '" class="mainmenu" title="' . $lang['House_house_mod'] . '"><img src="templates/' . $theme['template_name'] . '/images/icon_mini_house.gif" width="13" height="13" border="0" title="' . $lang['House_house_mod'] . '" alt="' . $lang['House_house_mod'] . '" hspace="3" />' . $lang['House_house'] . '</a>';
+}
+// House MOD End
+
+
+
 //
 // The following assigns all _common_ variables that may be used at any point
 // in a template.
@@ -341,6 +361,7 @@ $template->assign_vars(array(
 	'SITENAME' => $board_config['sitename'],
 	'SITE_DESCRIPTION' => $board_config['site_desc'],
 	'PAGE_TITLE' => $page_title,
+		'HOUSE' => $house,
      'SHOP' => 'Shop',
 	'META_TAG' => $seo_meta,
 	'LAST_VISIT_DATE' => sprintf($lang['You_last_visit'], $s_last_visit),

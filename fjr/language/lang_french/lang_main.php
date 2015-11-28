@@ -1327,3 +1327,13 @@ $lang['Disable_rewrite_explain'] = 'La ré-écriture d\'adresses peut être désacti
 // V: pm threshold, better error message
 $lang['Not_enough_messages_to_pm'] = 'Vous devez participer plus au forum avant de pouvoir utiliser les messages privés';
 $lang['Card_Duel'] = "Card Duel";
+
+
+
+// House MOD Start
+$lang['House_is_homeless'] = '%s is homeless';
+$lang['House_view'] = 'Click to view %s\'s home';
+$lang['House_house'] = 'House';
+$lang['House_house_mod'] = 'Goto the House MOD';
+$lang['House_disabled'] = 'House MOD is currently DISABLED!';
+// House MOD End

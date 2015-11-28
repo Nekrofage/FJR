@@ -84,6 +84,7 @@
 		  <td> <b><span class="gen">{INTERESTS}</span></b></td>
 		</tr>
             {CASH}
+            {USERHOUSE}
         <tr>
             <td valign="top" align="right" nowrap="nowrap"><span class="gen">{INVENTORYLINK}</span></td>
             <td> <span class="gen">{INVENTORYPICS}</span></td>

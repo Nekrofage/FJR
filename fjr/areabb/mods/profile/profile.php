@@ -164,6 +164,70 @@ $search = '<a href="' . $temp_url . '">' . sprintf($lang['Search_user_posts'], $
 
 
 
+// house mod start
+
+
+
+$sql = "SELECT enabled FROM phpbb_house_settings
+
+        WHERE var=1";
+
+if ( !($result = $db->sql_query($sql)) )
+
+    message_die( GENERAL_MESSAGE, 'Fatal Error Getting House Configs!');
+
+$hcrow = mysql_fetch_array($result);
+
+
+
+if ( !$hcrow['enabled'] )
+
+    $userhouse = '';
+
+else
+
+{
+
+    $sql = "SELECT uh.house_type, h.house_front FROM " . USER_HOUSE_TABLE . " uh
+
+            LEFT JOIN " . HOUSES_TABLE . " h  ON ( uh.house_type = h.house_type )
+
+            WHERE owner_id='$profiledata[user_id]'";
+
+    if ( !($result = $db->sql_query($sql)) )
+
+        message_die(GENERAL_MESSAGE, 'Fatal Error Getting Userhouse!');
+
+    $uhrow = mysql_fetch_array($result);
+
+
+
+    if ($uhrow['house_type'] != '')
+
+    {
+
+        $userhouse_link = append_sid( "house.$phpEx?mode=VIEW&id=" . $profiledata['user_id'] );
+
+        $userhouse_img = '<img src="./images/house/' . $uhrow['house_front'] . '" border ="0" title="' . sprintf( $lang['House_view'], $profiledata['username'] ) . '" alt="' . sprintf( $lang['House_view'], $profiledata['username'] ) . '" />';
+
+        $userhouse = '<a href="' . $userhouse_link . '">' . $userhouse_img . '</a>';
+
+    }
+
+    else
+
+    {
+
+        $userhouse = '<img src="./images/house/nohouse.gif" title="' . sprintf( $lang['House_is_homeless'], $profiledata['username'] ) . '" alt="' . sprintf( $lang['House_is_homeless'], $profiledata['username'] ) . '" />';
+
+    }
+
+}
+
+// house mod end
+
+
+
    if ($board_config['viewprofile'] == "images")
    {
    $itempurge = str_replace("Þ", "", $profiledata['user_items']);
@@ -225,6 +289,7 @@ else
 
 $template->assign_vars(array(
 	'USERNAME' => utf8_encode($profiledata['username']),
+		'USERHOUSE' => $userhouse,
 	'JOINED' => utf8_encode(create_date($lang['DATE_FORMAT'], $profiledata['user_regdate'], $board_config['board_timezone'])),
 	'POSTER_RANK' => utf8_encode($poster_rank),
 	'RANK_IMAGE' => utf8_encode($rank_image),

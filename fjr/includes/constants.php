@@ -158,6 +158,14 @@ define('AUTH_VOTE', 10);
 define('AUTH_ATTACH', 11);
 
 // Table names
+// House MOD Start
+define('USER_HOUSE_TABLE', $table_prefix . 'userhouses');
+define('HOUSES_TABLE', $table_prefix . 'houses');
+define('HOUSE_SETTINGS_TABLE', $table_prefix . 'house_settings');
+define('CASH_TABLE', $table_prefix.'cash');
+define('SHOPITEMS_TABLE', $table_prefix.'shopitems');
+define('SHOP_TABLE', $table_prefix.'shops');
+// House MOD End
 define('CONFIRM_TABLE', $table_prefix.'confirm');
 define('AUTH_ACCESS_TABLE', $table_prefix.'auth_access');
 define('BANLIST_TABLE', $table_prefix.'banlist');

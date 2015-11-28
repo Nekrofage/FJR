@@ -95,7 +95,7 @@ function adr_update_posters_infos()
 		message_die(GENERAL_ERROR, 'Error Getting Adr Users infos for cache update!', '', __LINE__, __FILE__, $sql);
 	}
 
-	$x = 1;
+	$x = 0;
 	while ( $row = $db->sql_fetchrow($result) )
 	{
 		$id = $x;
